@@ -1,0 +1,15 @@
+.input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: var(--fs-300);
+  color: var(--clr-text-300);
+  background: var(--clr-bg-t);
+  border: none;
+  border-radius: 0.5rem;
+}
+.input::placeholder {
+  color: var(--clr-text-200);
+}
+.input:focus {
+  outline: none;
+}

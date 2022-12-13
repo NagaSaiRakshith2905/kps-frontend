@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "kristas";
+  src: url(fonts/kristas.otf);
+}
+
+:root {
+  --clr-bg-p: #202430;
+  --clr-bg-s: #242a38;
+  --clr-bg-t: #4e596f;
+  --clr-bg-t-50: hsl(220 17% 37%/0.5);
+
+  --clr-text-400: hsl(0, 0%, 100%);
+  --clr-text-300: hsl(0 0% 100%/0.87);
+  --clr-text-200: hsl(0 0% 100%/0.65);
+  --clr-text-200: hsl(0 0% 100%/0.3);
+
+  --clr-fg-orange: linear-gradient(to bottom left, #f78361, #f54b64);
+
+  --clr-fg-purple: linear-gradient(to bottom left, #9d6ae1, #7b35d6);
+
+  --clr-fg-blue: linear-gradient(to bottom left, #8beaff, #006c9e);
+
+  --clr-node-src: linear-gradient(to bottom left, #38ef7d, #11998e);
+
+  --clr-node-dst: linear-gradient(to bottom left, #ed1e79, #662d8c);
+
+  --clr-node-default: linear-gradient(to bottom left, #5f676d, #3c4143);
+
+  --ff-p: "Poppins", sans-serif;
+  --ff-s: "kristas";
+
+  --fw-400: 400;
+  --fw-600: 600;
+  --fw-700: 700;
+
+  --fs-500: 1.75rem;
+  --fs-400: 1.5rem;
+  --fs-300: 1.25rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  font-family: var(--ff-p);
+  background: var(--clr-bg-p);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font: inherit;
+  overflow-wrap: break-word;
+}
+
+p {
+  color: var(--clr-text-200);
+}

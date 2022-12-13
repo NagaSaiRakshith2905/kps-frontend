@@ -1,0 +1,16 @@
+.card {
+  width: min-content;
+  margin-top: 2rem;
+  margin-inline: auto;
+  border: 2rem solid;
+  border-image-source: url("../../images/plus.svg");
+}
+.card-items {
+  background: var(--clr-bg-s);
+  width: 450px;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
