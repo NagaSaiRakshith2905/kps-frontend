@@ -1,0 +1,51 @@
+.App {
+  text-align: center;
+  color: var(--clr-text-300);
+}
+.card__cont {
+}
+
+.button {
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--clr-text-300);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-600);
+  border: none;
+  border-radius: 0.5rem;
+  transition: all 200ms ease;
+}
+.btn-purple {
+  background: var(--clr-fg-purple);
+}
+.btn-orange {
+  background: var(--clr-fg-orange);
+}
+.btn-blue {
+  background: var(--clr-fg-blue);
+}
+
+.button:hover,
+.button:active {
+  color: var(--clr-text-400);
+}
+
+.title {
+  font-family: var(--ff-s);
+  font-size: var(--fs-500);
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-space-between {
+  justify-content: space-between;
+}
+.align-items-center {
+  align-items: center;
+}
