@@ -1,25 +1,24 @@
 import "./App.css";
 import Card from "./components/card/Card";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Input from "./components/input/Input";
 import NavBar from "./components/nav-bar/NavBar";
 import Title from "./components/Title";
+import { Route, Routes } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { ViewAllNetworks } from "./pages/ViewAllNetworks";
+import { Network } from "./pages/Network";
 
 function App() {
   return (
-    <div className="App">
-      <NavBar>
-        <Title text="K-Path Simulations." />
-        {/* <p>Network name</p> */}
-        <button className="button btn-purple">Register</button>
-      </NavBar>
-      <Card>
-        <Title text="- Login -" />
-        <Input placeholder="Username/Email" />
-        <Input placeholder="Password" />
-        <p>Forgot Password</p>
-        <button className="button btn-purple">Login</button>
-      </Card>
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/view-all-networks" element={<ViewAllNetworks />} />
+      <Route path="/network/:nid" element={<Network />} />
+    </Routes>
   );
 }
 
