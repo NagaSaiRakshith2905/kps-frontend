@@ -1,0 +1,32 @@
+._card {
+    width: 100%;
+    height: calc(100vh - 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card__content {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .card-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .card-item > p {
+    background: -webkit-linear-gradient(var(--clr-purple-300),var(--clr-purple-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: var(--fs-500);
+  }
+  
