@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { registerUserApi } from "../services/UserService";
 import { useDispatch } from "react-redux";
@@ -6,11 +6,7 @@ import { useNavigate } from "react-router-dom";
 import registerActions from "../store/register";
 import NavBar from "../components/nav-bar/NavBar";
 import Card from "../components/card/Card";
-import useInput from "../store/use-input";
-
-const isNotEmpty = (value) => value.trim() !== "";
-const isEmail = (value) =>
-  value.includes("@") & value.includes(".") & (value.trim() !== "");
+import CardBorder from "../components/card/CardBorder";
 
 const Register = () => {
   const [userData, setUserData] = useState({
@@ -19,38 +15,47 @@ const Register = () => {
     password: "",
   });
 
-  const {
-    value: username,
-    isValid: usernameIsValid,
-    hasError: usernameHasError,
-    valueChangeHandler: usernameChangeHandler,
-    inputBlurHandler: usernameBlurHandler,
-    reset: resetUsername,
-  } = useInput(isNotEmpty);
+  const [formErrors, setFormErrors] = useState({});
 
-  const {
-    value: email,
-    isValid: emailIsValid,
-    hasError: emailHasError,
-    valueChangeHandler: emailChangeHandler,
-    inputBlurHandler: emailBlurHandler,
-    reset: resetEmail,
-  } = useInput(isEmail);
+  const [isSubmit, setIsSubmit] = useState(false);
 
-  const {
-    value: password,
-    isValid: passWordIsValid,
-    hasError: passWordHasError,
-    valueChangeHandler: passWordChangeHandler,
-    inputBlurHandler: passWordBlurHandler,
-    reset: resetPassWord,
-  } = useInput(isNotEmpty);
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setUserData({...userData, [name]: value});
+  };
+  
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(userData));
+    setIsSubmit(true);
+  };
 
-  let formIsValid = false;
+  useEffect(() => {
+    console.log(formErrors);
+    if(Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(userData);
+    }
+  },[userData]);
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if(!values.userName) {
+      errors.userName = "Username is required";
+    }
+    if(!values.email) {
+      errors.email ="Email is required";
+    }else if (!regex.test(values.email)) {
+      errors.email = "Please enter a valid email address!";
+    }
+    if(!values.password) {
+      errors.password = "Password is required";
+    }else if(values.password.length < 6) {
+      errors.password = "Password must have more than 6 characters";
+    }
+    return errors;
+  };
 
-  if (usernameIsValid && emailIsValid && passWordIsValid) {
-    formIsValid = true;
-  }
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   async function register() {
@@ -63,46 +68,56 @@ const Register = () => {
       }
     });
   }
-  // const registerSubmisssionHandler=(event)=>{
-  //   event.preventDefault();
-  // }
+
+  const onLoginClickHandler=(e)=>{
+
+    e.preventDefault();
+
+    navigate("/")
+
+  }
+
   return (
     <div className="register">
       <NavBar>
         <h1 className="title">K-Path Simulation.</h1>
-        <button className="button btn-purple">Login</button>
+        <button className="button btn-purple" onClick={onLoginClickHandler}>Login</button>
       </NavBar>
       <div class="form-card flex justify-content-center align-items-center">
-        <Card>
-          <h1 className="title">Register</h1>
-          <input
-            className="input"
-            placeholder="username"
-            value={userData.userName}
-            onChange={(e) => {
-              setUserData({ ...userData, userName: e.target.value });
-            }}
-          />
-          <input
-            className="input"
-            placeholder="email"
-            value={userData.email}
-            onChange={(e) => {
-              setUserData({ ...userData, email: e.target.value });
-            }}
-          />
-          <input
-            className="input"
-            placeholder="password"
-            value={userData.password}
-            onChange={(e) => {
-              setUserData({ ...userData, password: e.target.value });
-            }}
-          />
-          <button className="button btn-purple" onClick={register}>
-            Register
-          </button>
-        </Card>
+        <form onSubmit={submitHandler}>
+          <CardBorder>
+            <Card>
+              <h1 className="title">Register</h1>
+              <input
+                className="input"
+                placeholder="userName"
+                name="userName"
+                value={userData.userName}
+                onChange={handleChange}
+              />
+              <p>{formErrors.userName}</p>
+              <input
+                className="input"
+                placeholder="email"
+                value={userData.email}
+                name="email"
+                onChange={handleChange}
+              />
+              <p>{formErrors.email}</p>
+              <input
+                className="input"
+                placeholder="password"
+                value={userData.password}
+                name="password"
+                onChange={handleChange}
+              />
+              <p>{formErrors.password}</p>
+              <button className="button btn-purple">
+                Register
+              </button>
+            </Card>
+          </CardBorder>
+        </form>
       </div>
     </div>
   );
