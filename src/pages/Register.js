@@ -63,14 +63,15 @@ const Register = () => {
       }
     });
   }
-  // const registerSubmisssionHandler=(event)=>{
-  //   event.preventDefault();
-  // }
+  const onLoginHandler=(e)=>{
+    e.preventDefault();
+    navigate("/")
+  }
   return (
     <div className="register">
       <NavBar>
         <h1 className="title">K-Path Simulation.</h1>
-        <button className="button btn-purple">Login</button>
+        <button className="button btn-purple" onClick={onLoginHandler}>Login</button>
       </NavBar>
       <div class="form-card flex justify-content-center align-items-center">
         <Card>
