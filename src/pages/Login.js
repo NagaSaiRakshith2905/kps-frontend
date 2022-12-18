@@ -27,8 +27,9 @@ const Login = () => {
   const onRegisterClickHandler=(e)=>{
     e.preventDefault();
     navigate("/register")
+    e.preventDefault();
+    navigate("/register")
   }
-
   return (
     <div className="login">
       <NavBar>

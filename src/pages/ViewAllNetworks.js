@@ -29,18 +29,22 @@ import { useNavigate } from "react-router-dom";
 export const ViewAllNetworks = () => {
   const navigate = useNavigate();
   const onLogoutClickHandler=(e)=>{
+
     e.preventDefault();
     navigate("/");
   }
   const onBackClickHandler=(e)=>{
     e.preventDefault();
     navigate("/home");
+    e.preventDefault();
+    navigate("/");
   }
   return (
     <div className="view-all-networks">
       <NavBar>
         <div className="flex justify-content-center align-items-center">
           <img src={back} className="Create back" alt="logo" onClick={onBackClickHandler}/>
+          <img src={back} className="Create back" alt="logo" />
           <h3>back</h3>
         </div>
         <h1 className="title">K-Path Simulation.</h1>

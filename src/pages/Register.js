@@ -50,6 +50,36 @@ const Register = () => {
     if (!values.password) {
       errors.password = "Password is required";
     } else if (values.password.length < 6) {
+    const {name, value} = e.target;
+    setUserData({...userData, [name]: value});
+  };
+  
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(userData));
+    setIsSubmit(true);
+  };
+
+  useEffect(() => {
+    console.log(formErrors);
+    if(Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(userData);
+    }
+  },[userData]);
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if(!values.userName) {
+      errors.userName = "Username is required";
+    }
+    if(!values.email) {
+      errors.email ="Email is required";
+    }else if (!regex.test(values.email)) {
+      errors.email = "Please enter a valid email address!";
+    }
+    if(!values.password) {
+      errors.password = "Password is required";
+    }else if(values.password.length < 6) {
       errors.password = "Password must have more than 6 characters";
     }
     return errors;
@@ -71,6 +101,10 @@ const Register = () => {
     e.preventDefault();
     navigate("/");
   };
+  const onLoginClickHandler=(e)=>{
+    e.preventDefault();
+    navigate("/")
+  }
   return (
     <div className="register">
       <NavBar>
@@ -78,6 +112,7 @@ const Register = () => {
         <button className="button btn-purple" onClick={onLoginClickHandler}>
           Login
         </button>
+        <button className="button btn-purple" onClick={onLoginClickHandler}>Login</button>
       </NavBar>
       <div class="form-card flex justify-content-center align-items-center">
         <form onSubmit={submitHandler}>
@@ -110,6 +145,9 @@ const Register = () => {
               />
               <p>{formErrors.password}</p>
               <button className="button btn-purple">Register</button>
+              <button className="button btn-purple">
+                Register
+              </button>
             </Card>
           </CardBorder>
         </form>
