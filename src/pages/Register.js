@@ -20,6 +20,36 @@ const Register = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(userData));
+    setIsSubmit(true);
+  };
+
+  useEffect(() => {
+    console.log(formErrors);
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(userData);
+    }
+  }, [userData]);
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.userName) {
+      errors.userName = "Username is required";
+    }
+    if (!values.email) {
+      errors.email = "Email is required";
+    } else if (!regex.test(values.email)) {
+      errors.email = "Please enter a valid email address!";
+    }
+    if (!values.password) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 6) {
     const {name, value} = e.target;
     setUserData({...userData, [name]: value});
   };
@@ -55,7 +85,6 @@ const Register = () => {
     return errors;
   };
 
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   async function register() {
@@ -68,19 +97,21 @@ const Register = () => {
       }
     });
   }
-
-  const onLoginClickHandler=(e)=>{
-
+  const onLoginClickHandler = (e) => {
     e.preventDefault();
-
+    navigate("/");
+  };
+  const onLoginClickHandler=(e)=>{
+    e.preventDefault();
     navigate("/")
-
   }
-
   return (
     <div className="register">
       <NavBar>
         <h1 className="title">K-Path Simulation.</h1>
+        <button className="button btn-purple" onClick={onLoginClickHandler}>
+          Login
+        </button>
         <button className="button btn-purple" onClick={onLoginClickHandler}>Login</button>
       </NavBar>
       <div class="form-card flex justify-content-center align-items-center">
@@ -107,11 +138,13 @@ const Register = () => {
               <input
                 className="input"
                 placeholder="password"
+                type="password"
                 value={userData.password}
                 name="password"
                 onChange={handleChange}
               />
               <p>{formErrors.password}</p>
+              <button className="button btn-purple">Register</button>
               <button className="button btn-purple">
                 Register
               </button>

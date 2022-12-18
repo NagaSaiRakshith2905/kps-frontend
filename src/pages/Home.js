@@ -9,11 +9,18 @@ import { useNavigate } from "react-router-dom";
 export const Home = () => {
   const navigate = useNavigate();
   const onLogoutClickHandler=(e)=>{
-
     e.preventDefault();
-
     navigate("/");
-
+  }
+  const onCreateNetworkClickHandler=(e)=>{
+    e.preventDefault();
+    navigate("/network");
+  }
+  const onViewAllNetworkClickHandler=(e)=>{
+    e.preventDefault();
+    navigate("/view-all-networks");
+    e.preventDefault();
+    navigate("/");
   }
   return (
     <div className="register">
@@ -26,12 +33,14 @@ export const Home = () => {
           <div class="card__content">
             <Card>
               <div className="card-item">
+                <img src={add_network} className="Create Network" alt="logo" onClick={onCreateNetworkClickHandler}/>
                 <img src={add_network} className="Create Network" alt="logo" />
                 <p>Create new network</p>
               </div>
             </Card>
             <Card>
               <div className="card-item">
+                <img src={view_network} className="View All Network" alt="logo" onClick={onViewAllNetworkClickHandler}/>
                 <img src={view_network} className="View All Network" alt="logo" />
                 <p>View all networks</p>
               </div>

@@ -31,14 +31,19 @@ export const ViewAllNetworks = () => {
   const onLogoutClickHandler=(e)=>{
 
     e.preventDefault();
-
     navigate("/");
-
+  }
+  const onBackClickHandler=(e)=>{
+    e.preventDefault();
+    navigate("/home");
+    e.preventDefault();
+    navigate("/");
   }
   return (
     <div className="view-all-networks">
       <NavBar>
         <div className="flex justify-content-center align-items-center">
+          <img src={back} className="Create back" alt="logo" onClick={onBackClickHandler}/>
           <img src={back} className="Create back" alt="logo" />
           <h3>back</h3>
         </div>
