@@ -12,8 +12,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [valuee, setValuee] = useState();
   const [password, setPassword] = useState();
-  const [authError, setAuthError] = useState();
-  
 
   async function loginHandler() {
     await userLoginApi(valuee, password)
@@ -27,13 +25,11 @@ const Login = () => {
   }
 
   const onRegisterClickHandler=(e)=>{
-
     e.preventDefault();
-
     navigate("/register")
-
+    e.preventDefault();
+    navigate("/register")
   }
-
   return (
     <div className="login">
       <NavBar>

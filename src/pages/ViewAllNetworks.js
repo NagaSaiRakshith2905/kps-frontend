@@ -31,12 +31,10 @@ export const ViewAllNetworks = () => {
   const navigate = useNavigate();
   const onLogoutClickHandler = (e) => {
     e.preventDefault();
-
     navigate("/");
   };
   const onBackClickHandler = (e) => {
     e.preventDefault();
-
     navigate("/home");
   };
 
@@ -48,7 +46,18 @@ export const ViewAllNetworks = () => {
     <div className="view-all-networks">
       <NavBar>
         <div className="flex justify-content-center align-items-center" onClick={onBackClickHandler}>
-          <img src={back} className="Create back" alt="logo" />
+  }
+  const onBackClickHandler=(e)=>{
+    e.preventDefault();
+    navigate("/home");
+    e.preventDefault();
+    navigate("/");
+  }
+  return (
+    <div className="view-all-networks">
+      <NavBar>
+        <div className="flex justify-content-center align-items-center">
+          <img src={back} className="Create back" alt="logo" onClick={onBackClickHandler}/>
           <h3>back</h3>
         </div>
         <h1 className="title">K-Path Simulation.</h1>
