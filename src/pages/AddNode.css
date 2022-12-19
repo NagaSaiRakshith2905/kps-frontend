@@ -1,7 +1,6 @@
 .drop-down-cont {
   max-width: 100%;
 }
-
 .drop-down-cont label {
   margin-right: 1rem;
 }
@@ -9,7 +8,6 @@
 .drop-down-cont select {
   width: fit-content !important;
 }
-
 ._card {
   width: 100%;
   height: calc(100vh - 4rem);
