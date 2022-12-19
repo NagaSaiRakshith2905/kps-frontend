@@ -8,13 +8,17 @@ export const Network = () => {
   const navigate = useNavigate();
   const onLogoutClickHandler = (e) => {
     e.preventDefault();
-
     navigate("/");
   };
+  const onBackClickHandler = (e) => {
+    e.preventDefault();
+    navigate("/home");
+  };
+
   return (
     <div className="network">
       <NavBar>
-        <div className="flex justify-content-center align-items-center">
+        <div className="flex justify-content-center align-items-center" onClick={onBackClickHandler}>
           <img src={back} className="Create back" alt="logo" />
           <h3>back</h3>
         </div>
@@ -32,7 +36,9 @@ export const Network = () => {
           </div>
           <div className="buttons">
             <button className="button btn-purple">Create Network</button>
-            <button className="disabled button btn-purple">Analyse Paths</button>
+            <button className="disabled button btn-purple">
+              Analyse Paths
+            </button>
           </div>
         </div>
       </div>

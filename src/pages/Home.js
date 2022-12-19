@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import view_network from "../images/view_network.svg";
 import add_network from "../images/add_network.svg";
 import NavBar from "../components/nav-bar/NavBar";
@@ -6,42 +6,51 @@ import Card from "../components/card/Card";
 import CardBorder from "../components/card/CardBorder";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import { CreateNetwork } from "./CreateNetwork";
 export const Home = () => {
+  const [createNetworkIsShown, setCreateNetworkIsShown] = useState(false);
   const navigate = useNavigate();
-  const onLogoutClickHandler=(e)=>{
+  const onLogoutClickHandler = (e) => {
     e.preventDefault();
     navigate("/");
-  }
-  const onCreateNetworkClickHandler=(e)=>{
+  };
+  const showCreateNetwork = (e) => {
     e.preventDefault();
-    navigate("/network");
-  }
-  const onViewAllNetworkClickHandler=(e)=>{
+    setCreateNetworkIsShown(true);
+  };
+  const hideCreateNetwork = (e) => {
+    e.preventDefault();
+    setCreateNetworkIsShown(false);
+  };
+  const onViewAllNetworkClickHandler = (e) => {
     e.preventDefault();
     navigate("/view-all-networks");
-    e.preventDefault();
-    navigate("/");
-  }
+  };
   return (
     <div className="register">
+      {createNetworkIsShown && <CreateNetwork onClose={hideCreateNetwork} />}
       <NavBar>
         <h1 className="title">K-Path Simulation.</h1>
-        <button className="button btn-orange" onClick={onLogoutClickHandler}>Logout</button>
+        <button className="button btn-orange" onClick={onLogoutClickHandler}>
+          Logout
+        </button>
       </NavBar>
       <div className="_card">
         <CardBorder>
           <div class="card__content">
             <Card>
-              <div className="card-item">
-                <img src={add_network} className="Create Network" alt="logo" onClick={onCreateNetworkClickHandler}/>
+              <div className="card-item" onClick={showCreateNetwork}>
                 <img src={add_network} className="Create Network" alt="logo" />
                 <p>Create new network</p>
               </div>
             </Card>
             <Card>
-              <div className="card-item">
-                <img src={view_network} className="View All Network" alt="logo" onClick={onViewAllNetworkClickHandler}/>
-                <img src={view_network} className="View All Network" alt="logo" />
+              <div className="card-item" onClick={onViewAllNetworkClickHandler}>
+                <img
+                  src={view_network}
+                  className="View All Network"
+                  alt="logo"
+                />
                 <p>View all networks</p>
               </div>
             </Card>
