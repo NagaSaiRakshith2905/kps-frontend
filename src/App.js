@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { ViewAllNetworks } from "./pages/ViewAllNetworks";
 import { Network } from "./pages/Network";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/view-all-networks" element={<ViewAllNetworks />} />
       <Route path="/network/:nid" element={<Network />} />
+      <Route path="/*" element={<ErrorPage/>} />
     </Routes>
   );
 }

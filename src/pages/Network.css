@@ -1,0 +1,42 @@
+.network{
+    width: 100%;
+    height: 100vh;
+}
+
+.network .add-network-container {
+    width: 100%;
+    background: var(--clr-bg-t-50);
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.add-network-container .content{
+    width: min(100%, 1200px);
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+    margin: 0.5rem 0px;
+}
+
+.network .add-network-container .node-link {
+    background-color: var(--clr-bg-t);
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    gap: 2rem;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+}
+
+.content .buttons{
+    width: fit-content;
+    display: flex;
+    gap: 2rem;
+}
+.disabled{
+    cursor: not-allowed;
+    background: var(--clr-bg-t) !important;
+}
