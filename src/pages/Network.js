@@ -2,10 +2,13 @@ import React from "react";
 import NavBar from "../components/nav-bar/NavBar";
 import back from "../images/back.svg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "./Network.css";
+import AddNode from "./AddNode";
 
 export const Network = () => {
   const navigate = useNavigate();
+  const [createNodeIsShown, setCreateNodeIsShown] = useState(false);
   const onLogoutClickHandler = (e) => {
     e.preventDefault();
     navigate("/");
@@ -14,11 +17,22 @@ export const Network = () => {
     e.preventDefault();
     navigate("/home");
   };
-
+  const showNode = (e) => {
+    e.preventDefault();
+    setCreateNodeIsShown(true);
+  };
+  const hideNode = (e) => {
+    e.preventDefault();
+    setCreateNodeIsShown(false);
+  };
   return (
     <div className="network">
+      {createNodeIsShown && <AddNode onClose={hideNode} />}
       <NavBar>
-        <div className="flex justify-content-center align-items-center" onClick={onBackClickHandler}>
+        <div
+          className="flex justify-content-center align-items-center"
+          onClick={onBackClickHandler}
+        >
           <img src={back} className="Create back" alt="logo" />
           <h3>back</h3>
         </div>
@@ -31,7 +45,9 @@ export const Network = () => {
         <div className="content">
           <div className="node-link">
             <p>add |</p>
-            <button className="button btn-blue">node</button>
+            <button className="button btn-blue" onClick={showNode}>
+              node
+            </button>
             <button className="button btn-blue">Link</button>
           </div>
           <div className="buttons">
