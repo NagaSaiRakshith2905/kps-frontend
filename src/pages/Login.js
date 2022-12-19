@@ -36,28 +36,32 @@ const Login = () => {
         <h1 className="title">K-Path Simulation.</h1>
         <button className="button btn-purple" onClick={onRegisterClickHandler}>Register</button>
       </NavBar>
-      <CardBorder>
-        <Card>
-          <h1 className="title">Login</h1>
-          <input
-            className="input"
-            placeholder="username"
-            value={valuee}
-            type={"text"}
-            onChange={(e) => setValuee(e.target.value)}
-          />
-          <input
-            className="input"
-            placeholder="password"
-            value={password}
-            type={"password"}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="button btn-purple" onClick={loginHandler}>
-            Login
-          </button>
-        </Card>
-      </CardBorder>
+      <form>
+        <CardBorder>
+          <Card>
+            <h1 className="title">Login</h1>
+            <input
+              className="input"
+              placeholder="userName/email"
+              name="userName/email"
+              value={valuee}
+              type={"text"}
+              onChange={(e) => setValuee(e.target.value)}
+            />
+            <input
+              className="input"
+              placeholder="password"
+              name="password"
+              value={password}
+              type={"password"}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className="button btn-purple" onClick={loginHandler}>
+              Login
+            </button>
+          </Card>
+        </CardBorder>
+      </form>
     </div>
   );
 };
