@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Network.css";
 import AddNode from "./AddNode";
+import AddLink from "./AddLink";
 
 export const Network = () => {
   const navigate = useNavigate();
   const [createNodeIsShown, setCreateNodeIsShown] = useState(false);
+  const [createLinkIsShown, setCreateLinkIsShown] = useState(false);
   const onLogoutClickHandler = (e) => {
     e.preventDefault();
     navigate("/");
@@ -25,9 +27,19 @@ export const Network = () => {
     e.preventDefault();
     setCreateNodeIsShown(false);
   };
+  const showLink = (e) => {
+    e.preventDefault();
+    setCreateLinkIsShown(true);
+  };
+  const hideLink = (e) => {
+    e.preventDefault();
+    setCreateLinkIsShown(false);
+  };
+
   return (
     <div className="network">
       {createNodeIsShown && <AddNode onClose={hideNode} />}
+      {createLinkIsShown && <AddLink onClose={hideLink} />}
       <NavBar>
         <div
           className="flex justify-content-center align-items-center"
@@ -48,7 +60,9 @@ export const Network = () => {
             <button className="button btn-blue" onClick={showNode}>
               node
             </button>
-            <button className="button btn-blue">Link</button>
+            <button className="button btn-blue" onClick={showLink}>
+              Link
+            </button>
           </div>
           <div className="buttons">
             <button className="button btn-purple">Create Network</button>
