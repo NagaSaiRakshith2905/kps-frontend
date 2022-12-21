@@ -5,7 +5,7 @@ import Modal from "../components/modal/Modal";
 import Close from "../images/close.svg";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createNetworkActions } from "../store/network";
+import { networkActions } from "../store/network";
 
 export const CreateNetwork = (props) => {
   const dispatch = useDispatch();
@@ -13,8 +13,8 @@ export const CreateNetwork = (props) => {
   const navigate = useNavigate();
   const onNetworkClickHandler = (e) => {
     e.preventDefault();
-    dispatch(createNetworkActions.setNetworkName);
-    navigate("/network");
+    dispatch(networkActions.setNetworkName(networkName));
+    navigate("/network/-1/"+networkName);
   };
   return (
     <div className="create-network">

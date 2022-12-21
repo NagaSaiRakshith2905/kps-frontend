@@ -6,6 +6,7 @@ import { Home } from "./pages/Home";
 import { ViewAllNetworks } from "./pages/ViewAllNetworks";
 import { Network } from "./pages/Network";
 import ErrorPage from "./pages/ErrorPage";
+import { ForgotPassword } from "./pages/forgotpassword/ForgotPassword";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />
       <Route path="/view-all-networks" element={<ViewAllNetworks />} />
-      <Route path="/*" element={<ErrorPage/>} />
-      <Route path="/network/" element={<Network />} />
+      <Route path="/*" element={<ErrorPage />} />
+      <Route path="/network/:id/:networkName" element={<Network />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
     </Routes>
   );
 }

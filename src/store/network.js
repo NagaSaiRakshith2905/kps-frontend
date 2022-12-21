@@ -1,22 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-const createNetworkSlice = createSlice({
-  name: "create network",
+const networkSlice = createSlice({
+  name: "network",
   initialState: { isNetworkCreated: false, networkId: "", networkName: "",nodes:[],links:[] },
   reducers: {
-    setloggedin(state) {
+    setIsNetworkCreated(state) {
       state.isNetworkCreated = !state.isNetworkCreated;
     },
     setNetworkId(state, action) {
       state.networkId = action.payload;
-      console.log(action.payload);
     },
     setNetworkName(state, action) {
       state.networkName = action.payload;
+      state.networkId=-1;
       console.log(action.payload);
+    },
+    setNodes(state, action) {
+      const node = action.payload;
+      state.nodes=[...state.nodes,node]
+    },
+    setLinks(state, action) {
+      const link = action.payload;
+      state.links=[...state.links,link]
     },
   },
 });
 
-export const createNetworkActions = createNetworkSlice.actions;
+export const networkActions = networkSlice.actions;
 
-export default createNetworkSlice;
+export default networkSlice;

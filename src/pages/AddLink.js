@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 //import { createNodeActions } from "../store/network";
 import "./AddNode.css";
 
-function AddNode(props) {
-  // const dispatch = useDispatch();
-  const [nodeName, setNodeName] = useState();
-  const [nodeIpAddress, setNodeIpAddress] = useState();
-  const [password, setPassword] = useState();
+function AddLink(props) {
+  //const dispatch = useDispatch();
+  const [linkName, setLinkName] = useState();
+  const [linkLength, setLinkLength] = useState();
+  const [noOfSpaces, setNoOfSpaces] = useState();
   const navigate = useNavigate();
   const onNetworkClickHandler = (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ function AddNode(props) {
   };
 
   return (
-    <div className="add-node">
+    <div className="add-link">
       <Modal onClose={props.onClose}>
         <div
           className="close-btn flex justify-content-center align-items-center"
@@ -35,39 +35,49 @@ function AddNode(props) {
         <div className="_card">
           <CardBorder>
             <Card>
-              <h1 className="title">Add New Node</h1>
+              <h1 className="title">Add New Link</h1>
               <input
                 className="input"
                 placeholder="lable/name"
                 type="text"
-                value={nodeName}
-                onChange={(e) => setNodeName(e.target.value)}
-              />
-
-              <input
-                className="input"
-                placeholder="ip address"
-                type="text"
-                value={nodeIpAddress}
-                onChange={(e) => setNodeIpAddress(e.target.value)}
-              />
-
-              <input
-                className="input"
-                placeholder="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={linkName}
+                onChange={(e) => setLinkName(e.target.value)}
               />
 
               <div className="drop-down-cont flex justify-content-space-between align-items-center">
-                <p>Node Type :</p>
+                <p>From :</p>
                 <select className="input">
-                  <option value="add/drop">ADD/DROP</option>
-                  <option value="passthrough">PASSTHROUGH</option>
-                  <option value="ila">ILA</option>
+                  <option value="node1">node1</option>
+                  <option value="node2">node2</option>
+                  <option value="node3">node3</option>
                 </select>
               </div>
+
+              <div className="drop-down-cont flex justify-content-space-between align-items-center">
+                <p>To :</p>
+                <select className="input">
+                  <option value="node1">node1</option>
+                  <option value="node2">node2</option>
+                  <option value="node3">node3</option>
+                </select>
+              </div>
+
+              <input
+                className="input"
+                placeholder="Length"
+                type="text"
+                value={linkLength}
+                onChange={(e) => setLinkLength(e.target.value)}
+              />
+
+              <input
+                className="input"
+                placeholder="No Of Spaces"
+                type="text"
+                value={noOfSpaces}
+                onChange={(e) => setNoOfSpaces(e.target.value)}
+              />
+
               <button
                 className="button btn-purple"
                 onClick={onNetworkClickHandler}
@@ -81,4 +91,4 @@ function AddNode(props) {
     </div>
   );
 }
-export default AddNode;
+export default AddLink;
