@@ -10,11 +10,8 @@ const ListOfAnalysePath = (props) => {
         <div className="content">
           <h2 className="heading">List of all Networks:</h2>
           <div style={{ width: "100%" }}>
-            {circuits.map((circuit) => (
+            {circuits.map((circuit, index) => (
               <ListItem
-                showAnalysedPath={props.showAnalysedPath}
-                analysedPathIsShown={props.analysedPathIsShown}
-                hideAnalysedPath={props.hideAnalysedPath}
                 src={circuit.sourceNode}
                 dst={circuit.destinationNode}
                 paths={circuit.paths}

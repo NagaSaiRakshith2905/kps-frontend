@@ -25,7 +25,6 @@ const Network = () => {
   const [createNodeIsShown, setCreateNodeIsShown] = useState(false);
   const [createLinkIsShown, setCreateLinkIsShown] = useState(false);
   const [analysePathIsShown, setAnalysePathIsShown] = useState(false);
-  const [analysedPathIsShown, setAnalysedPathIsShown] = useState(false);
 
   const nodes = useSelector((state) => state.network.nodes);
   const links = useSelector((state) => state.network.links);
@@ -77,14 +76,6 @@ const Network = () => {
     e.preventDefault();
     setAnalysePathIsShown(false);
   };
-  const showAnalysedPath = (e) => {
-    e.preventDefault();
-    setAnalysedPathIsShown(true);
-  };
-  const hideAnalysedPath = (e) => {
-    e.preventDefault();
-    showAnalysedPath(false);
-  };
 
   return (
     <>
@@ -107,12 +98,6 @@ const Network = () => {
               setAnalysePathIsShown={setAnalysePathIsShown}
             />
           )}
-          {analysePathIsShown && (
-            <AnalysedPath
-              onClose={hideAnalysedPath}
-              setAnalysedPathIsShown={setAnalysedPathIsShown}
-            />
-          )}
           <NetworkNavBar
             onBack={onBackClickHandler}
             networkName={networkName}
@@ -125,11 +110,7 @@ const Network = () => {
             showAnalysePath={showAnalysePath}
           />
           <Circuit />
-          <ListOfAnalysePath
-            showAnalysedPath={showAnalysedPath}
-            hideAnalysedPath={hideAnalysedPath}
-            analysedPathIsShown={analysedPathIsShown}
-          />
+          <ListOfAnalysePath />
         </div>
       )}
     </>

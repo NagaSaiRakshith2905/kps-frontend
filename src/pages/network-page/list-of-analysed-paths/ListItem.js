@@ -3,7 +3,7 @@ import React from "react";
 const ListItem = (props) => {
   const listObject = (network, index) => {
     return (
-      <li className="list-item">
+      <li key={index} className="list-item">
         <div
           style={{
             display: "grid",
@@ -21,14 +21,14 @@ const ListItem = (props) => {
           <p>|</p>
         </div>
         <div className="flex">
-          {network.nodes.map((node, index) =>
-            index !== network.nodes.length - 1 ? (
-              <div>
+          {network.nodes.map((node, i) =>
+            i !== network.nodes.length - 1 ? (
+              <div key={i}>
                 {node.nodeName}
                 {" -> "}
               </div>
             ) : (
-              <div>{node.nodeName}</div>
+              <div key={i}>{node.nodeName}</div>
             )
           )}
           <p>Total Weight={network.totalWeight}</p>
