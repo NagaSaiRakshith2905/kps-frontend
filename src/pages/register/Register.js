@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { registerUserApi } from "../services/UserService";
+import { registerUserApi } from "../../services/UserService";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import registerActions from "../store/register";
-import NavBar from "../components/nav-bar/NavBar";
-import Card from "../components/card/Card";
-import CardBorder from "../components/card/CardBorder";
+import { authActions } from "../../store/auth";
+import { userActions } from "../../store/user";
+import NavBar from "../../components/nav-bar/NavBar";
+import Card from "../../components/card/Card";
+import CardBorder from "../../components/card/CardBorder";
 
 const Register = () => {
   const [userData, setUserData] = useState({
@@ -16,19 +17,11 @@ const Register = () => {
   });
 
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
-
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(userData);
-    }
-  }, [userData]);
 
   const validate = (values) => {
     const errors = {};
@@ -54,16 +47,23 @@ const Register = () => {
   const navigate = useNavigate();
   async function registerHandler(e) {
     e.preventDefault();
-    setFormErrors(validate(userData));
-    setIsSubmit(true);
-    await registerUserApi(userData).then((resp) => {
-      if (resp.status === 200 || resp.status === 201) {
-        // localStorage.setItem("User-Data", JSON.stringify(resp.data));
-        navigate("/home");
-        alert("registration successful");
-        dispatch(registerActions.setloggedin());
-      }
-    });
+    const errors = validate(userData);
+    setFormErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      await registerUserApi(userData)
+        .then((resp) => {
+          if (resp.status === 200 || resp.status === 201) {
+            alert("registration successful");
+            dispatch(authActions.setloggedin(true));
+            dispatch(userActions.setUsername(resp.data));
+            localStorage.setItem("username", resp.data);
+            navigate("/home");
+          }
+        })
+        .catch((error) => {
+          alert(error.response.data.message);
+        });
+    }
   }
 
   const onLoginClickHandler = (e) => {

@@ -7,7 +7,7 @@ import NavBar from "../../components/nav-bar/NavBar";
 import { userUpdatePasswordApi } from "../../services/UserService";
 import { authActions } from "../../store/auth";
 
-export const ForgotPassword = () => {
+const ForgotPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [value, setValue] = useState();
@@ -63,3 +63,5 @@ export const ForgotPassword = () => {
     </div>
   );
 };
+
+export default ForgotPassword;

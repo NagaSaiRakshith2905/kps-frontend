@@ -1,74 +1,78 @@
 import axios from "axios";
-let base_url1='http://localhost:8081/api/network/'
+let base_url1 = "http://localhost:8081/api/network/";
 
-export function addNetwork(networkRequest) {
+export function addNetworkAPI(networkRequest) {
   let url = base_url1 + "add-network/";
   console.log(url);
-  return axios.post(
-    url,
-    JSON.stringify(networkRequest), {
-      mode: "no-cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      
-    }
-  );
+  return axios.post(url, JSON.stringify(networkRequest), {
+    mode: "no-cors",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
 }
 
-export function getAllNetwork() {
-    let url = base_url1 + "get-all-networks/";
-    return axios.get(url, {
-      mode: "no-cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-  }
+export function getAllNetworkAPI(username) {
+  let url = base_url1 + "get-all-networks-for-user/?username=" + username;
+  return axios.get(url, {
+    mode: "no-cors",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+}
 
-  export function getById(id) {
-    let url = base_url1 + "get-by-id/?id=" + id ;
-    return axios.get(url, {
-      mode: "no-cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-  }
+export function getByIdAPI(id) {
+  let url = base_url1 + "get-networks-by-id/?id=" + id;
+  return axios.get(url, {
+    mode: "no-cors",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+}
 
-  export function updatetNetwork(network) {
-    let url = base_url1 + "update-network/";
-    return axios.put(url, {  
-      mode: "no-cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-  }
+export function updatetNetworkAPI(network) {
+  let url = base_url1 + "update-network/";
+  return axios.put(url, {
+    mode: "no-cors",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+}
 
-  export function deleteNetwork(network) {
-    let url = base_url1 + "delete-network/" ;
-    return axios.delete(url, {
-      mode: "no-cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-  }
+export function deleteNetworkAPI(id) {
+  let url = base_url1 + "delete-network-by-id/?id=" + id;
+  return axios.delete(url, {
+    mode: "no-cors",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+}
 
-  export function analizepath(network) {
-    let url = base_url1 + "analize-path/"  ;
-    return axios.get(url, 
-      JSON.stringify(network),  {
-      mode: "no-cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    });
-  }
+export function analysepathAPI(network) {
+  let url =
+    base_url1 +
+    "analyse-path/?src=" +
+    network.src +
+    "&dst=" +
+    network.dst +
+    "&network-id=" +
+    network.networkId +
+    "&user-defined-path=" +
+    network.path;
+  return axios.get(url, {
+    mode: "no-cors",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+}

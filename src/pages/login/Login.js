@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { authActions } from "../store/auth";
-import { userLoginApi } from "../services/UserService";
+import { userActions } from "../../store/user";
+import { authActions } from "../../store/auth";
+import { userLoginApi } from "../../services/UserService";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../components/card/Card";
-import CardBorder from "../components/card/CardBorder";
-import NavBar from "../components/nav-bar/NavBar";
+import Card from "../../components/card/Card";
+import CardBorder from "../../components/card/CardBorder";
+import NavBar from "../../components/nav-bar/NavBar";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,11 @@ const Login = () => {
     e.preventDefault();
     await userLoginApi(value, password).then((resp) => {
       if (resp.status === 200 || resp.status === 201) {
-        navigate("/home");
         alert("login successful");
-        dispatch(authActions.setloggedin());
+        localStorage.setItem("username", resp.data);
+        dispatch(userActions.setUsername(resp.data));
+        dispatch(authActions.setloggedin(true));
+        navigate("/home");
       }
     });
   }
@@ -36,7 +39,7 @@ const Login = () => {
           Register
         </button>
       </NavBar>
-      <form>
+      <form onSubmit={loginHandler}>
         <CardBorder>
           <Card>
             <h1 className="title">Login</h1>
@@ -58,12 +61,17 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-              <Link style={{color:"var(--clr-text-s)",textDecoration: "none",textAlign:"end"}} to={"/forgot-password"}>
-            <p className="forgot-password">
-            Forgot Password
-            </p>
-              </Link>
-            <button className="button btn-purple" onClick={loginHandler}>
+            <Link
+              style={{
+                color: "var(--clr-text-s)",
+                textDecoration: "none",
+                textAlign: "end",
+              }}
+              to={"/forgot-password"}
+            >
+              <p className="forgot-password">Forgot Password</p>
+            </Link>
+            <button className="button btn-purple" type={"submit"}>
               Login
             </button>
           </Card>

@@ -3,12 +3,12 @@ const authSlice = createSlice({
   name: "auth",
   initialState: { isloggedin: false },
   reducers: {
-    setloggedin(state) {
-      state.isloggedin = !state.isloggedin;
+    setloggedin(state, action) {
+      state.isloggedin = action.payload;
     },
   },
 });
 
-export const authActions=authSlice.actions;
+export const authActions = authSlice.actions;
 
 export default authSlice;
