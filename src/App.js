@@ -1,14 +1,27 @@
 import "./App.css";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { ViewAllNetworks } from "./pages/ViewAllNetworks";
-import { Network } from "./pages/Network";
+import Home from "./pages/home/Home";
+import ViewAllNetworks from "./pages/home/ViewAllNetworks";
 import ErrorPage from "./pages/ErrorPage";
-import { ForgotPassword } from "./pages/forgotpassword/ForgotPassword";
+import Network from "./pages/network-page/Network";
+import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
+import "reactflow/dist/style.css";
+import { useDispatch } from "react-redux";
+import { userActions } from "./store/user";
+import { authActions } from "./store/auth";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  const username = localStorage.getItem("username");
+  useEffect(() => {
+    if (username) {
+      dispatch(authActions.setloggedin(true));
+      dispatch(userActions.setUsername(username));
+    }
+  }, []);
   return (
     <Routes>
       <Route path="/" element={<Login />} />

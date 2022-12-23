@@ -1,8 +1,10 @@
 import axios from "axios";
-import { base_url } from "../util/constants";
+export const base_url = "http://localhost:8080/api/user/";
 
 export function registerUserApi(userData) {
-  let url = base_url + "user/register/";
+  let url = base_url + "register/";
+  console.log(userData);
+  console.log(url);
   return axios.post(url, JSON.stringify(userData), {
     mode: "no-cors",
     headers: {
@@ -13,7 +15,7 @@ export function registerUserApi(userData) {
 }
 
 export function userLoginApi(value, password) {
-  let url = base_url + "user/login/?value=" + value + "&password=" + password;
+  let url = base_url + "login/?value=" + value + "&password=" + password;
   return axios.get(url, {
     mode: "no-cors",
     headers: {
@@ -24,7 +26,7 @@ export function userLoginApi(value, password) {
 }
 
 export function viewUserByIdApi(id) {
-  let url = base_url + "user/get-by-id/" + id;
+  let url = base_url + "get-by-id/" + id;
   return axios.get(url, {
     mode: "no-cors",
     headers: {
@@ -35,7 +37,7 @@ export function viewUserByIdApi(id) {
 }
 export function userUpdatePasswordApi(value, password) {
   let url =
-    base_url + "user/update-password/?value=" + value + "&password=" + password;
+    base_url + "update-password/?value=" + value + "&password=" + password;
   return axios.put(url, {
     mode: "no-cors",
     headers: {
@@ -46,7 +48,7 @@ export function userUpdatePasswordApi(value, password) {
 }
 
 export function viewUserByUsernameApi(username) {
-  let url = base_url + "user/get-by-username/" + username;
+  let url = base_url + "get-by-username/" + username;
   return axios.get(url, {
     mode: "no-cors",
     headers: {
